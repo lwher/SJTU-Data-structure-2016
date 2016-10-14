@@ -42,7 +42,7 @@ public:
 			//TODO
 		}
 		// return th distance between two iterator,
-		// if these two iterators points to different vectors, throw invaild_iterator.
+		// if these two iterators points to different vectors, throw invalid_iterator.
 		int operator-(const iterator &rhs) const {
 			//TODO
 		}
