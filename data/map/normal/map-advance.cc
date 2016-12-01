@@ -16,14 +16,14 @@ bool check1(){ //insert by []
 	int a, b;
 	sjtu::map<int, int> Q;
 	std::map<int, int> stdQ;	
-	for(int i = 1; i <= 50000; i++){
+	for(int i = 1; i <= 5000; i++){
 		a = rand(); b = rand();
 		if(!Q.count(a)){
 			Q[a] = b; stdQ[a] = b;
 		}
 	}
 	sjtu::map<int, int> :: value_type pp;
-	for(int i = 1; i <= 50000; i++){
+	for(int i = 1; i <= 5000; i++){
 		a = rand(); b = rand();
 		if(!Q.count(a)){
 			Q.insert(sjtu::map<int, int> :: value_type(a, b));
@@ -68,19 +68,19 @@ bool check2(){//Q.insert
 bool check3(){//find remove 
 	sjtu::map<int, int> Q;
 	std::map<int, int> stdQ;
-	int num[30001];
+	int num[3001];
 	num[0] = 0;
-	for(int i = 1; i <= 30000; i++) num[i] = num[i - 1] + rand() % 325 + 1; 
-	for(int i = 1; i <= 60000; i++) swap(num[rand() % 30000 + 1], num[rand() % 30000 + 1]);
-	for(int i = 1; i <= 30000; i++){
+	for(int i = 1; i <= 3000; i++) num[i] = num[i - 1] + rand() % 325 + 1; 
+	for(int i = 1; i <= 6000; i++) swap(num[rand() % 3000 + 1], num[rand() % 3000 + 1]);
+	for(int i = 1; i <= 3000; i++){
 		int t = rand();
 		stdQ[num[i]] = t; Q[num[i]] = t;
 	}
 	
 	sjtu::map<int, int>::iterator it;
 	std::map<int, int>::iterator stdit;
-	for(int i = 1; i <= 60000; i++) swap(num[rand() % 30000 + 1], num[rand() % 30000 + 1]);
-	for(int i = 1; i <= 10325; i++){
+	for(int i = 1; i <= 6000; i++) swap(num[rand() % 3000 + 1], num[rand() % 3000 + 1]);
+	for(int i = 1; i <= 1025; i++){
 		it = Q.find(num[i]); 
 		Q.erase(it);
 		stdit = stdQ.find(num[i]); stdQ.erase(stdit);
@@ -105,7 +105,7 @@ bool check4(){//const_iterator
 	int a, b;
 	sjtu::map<int, int> Q;
 	std::map<int, int> stdQ;
-	for(int i = 1; i <= 30000; i++){
+	for(int i = 1; i <= 3000; i++){
 		a = rand(); b = rand();
 		if(!Q.count(a)){
 			Q[a] = b; stdQ[a] = b;
@@ -191,7 +191,7 @@ bool check6(){ // copy test
 	sjtu::map<int, int> Q1;
 	std::map<int, int> stdQ;
 	sjtu::map<int, int> :: value_type pp;
-	for(int i = 1; i <= 10000; i++){
+	for(int i = 1; i <= 1000; i++){
 		a = rand(); b = rand();
 		if(!Q1.count(a)){
 			Q1.insert(sjtu::pair<int, int>(a, b));
@@ -237,7 +237,7 @@ bool check7(){ //"=" operator
 	sjtu::map<int, int> Q1;
 	std::map<int, int> stdQ;
 	sjtu::map<int, int> :: value_type pp;
-	for(int i = 1; i <= 10000; i++){
+	for(int i = 1; i <= 1000; i++){
 		a = rand(); b = rand();
 		if(!Q1.count(a)){
 			Q1.insert(sjtu::map<int, int> :: value_type(a, b));
@@ -461,63 +461,22 @@ bool check11(){
 	return OK == 6;
 }
 
-bool check12(){ // erase(it++)
+bool check12(){ // erase(it--)
 	sjtu::map<int, int> Q;
 	std::map<int, int> stdQ;
-	int num[30001];
+	int num[3001];
 	num[0] = 0;
-	for(int i = 1; i <= 30000; i++) num[i] = num[i - 1] + rand() % 325 + 1; 
-	for(int i = 1; i <= 60000; i++) swap(num[rand() % 30000 + 1], num[rand() % 30000 + 1]);
-	for(int i = 1; i <= 30000; i++){
+	for(int i = 1; i <= 3000; i++) num[i] = num[i - 1] + rand() % 325 + 1; 
+	for(int i = 1; i <= 6000; i++) swap(num[rand() % 3000 + 1], num[rand() % 3000 + 1]);
+	for(int i = 1; i <= 3000; i++){
 		int t = rand();
 		stdQ[num[i]] = t; Q[num[i]] = t;
 	}
 	
 	sjtu::map<int, int>::iterator it;
 	std::map<int, int>::iterator stdit;
-	for(int i = 1; i <= 60000; i++) swap(num[rand() % 30000 + 1], num[rand() % 30000 + 1]);
-	for(int i = 1; i <= 10325; i++){
-		it = Q.find(num[i]); Q.erase(it++);
-		stdit = stdQ.find(num[i]); stdQ.erase(stdit++);
-		if(it == Q.end()){
-			if(stdit != stdQ.end()) return 0;
-		}
-		else{
-			if(it -> first != stdit -> first) return 0;
-		}
-	}	
-	if(Q.size() != stdQ.size()) return 0;
-	it = Q.begin();
-	for(stdit = stdQ.begin(); stdit != stdQ.end(); stdit++){ 
-		if(stdit -> first != it -> first) return 0;
-		if(stdit -> second != (*it).second) return 0;
-		it++;
-	}
-	stdit = --stdQ.end();
-	for(it = --Q.end(); it != Q.begin(); it--){
-		if(stdit -> first != it -> first) return 0;
-		if(stdit -> second != (*it).second) return 0;
-		stdit--;
-	}
-	return 1;
-}
-
-bool check13(){ // erase(it--)
-	sjtu::map<int, int> Q;
-	std::map<int, int> stdQ;
-	int num[30001];
-	num[0] = 0;
-	for(int i = 1; i <= 30000; i++) num[i] = num[i - 1] + rand() % 325 + 1; 
-	for(int i = 1; i <= 60000; i++) swap(num[rand() % 30000 + 1], num[rand() % 30000 + 1]);
-	for(int i = 1; i <= 30000; i++){
-		int t = rand();
-		stdQ[num[i]] = t; Q[num[i]] = t;
-	}
-	
-	sjtu::map<int, int>::iterator it;
-	std::map<int, int>::iterator stdit;
-	for(int i = 1; i <= 60000; i++) swap(num[rand() % 30000 + 1], num[rand() % 30000 + 1]);
-	for(int i = 1; i <= 10325; i++){
+	for(int i = 1; i <= 6000; i++) swap(num[rand() % 3000 + 1], num[rand() % 3000 + 1]);
+	for(int i = 1; i <= 1025; i++){
 		it = Q.find(num[i]); if(it != Q.begin()) Q.erase(it--);
 		stdit = stdQ.find(num[i]); if(stdit != stdQ.begin()) stdQ.erase(stdit--);
 		if(it -> first != stdit -> first)return 0;
@@ -538,7 +497,7 @@ bool check13(){ // erase(it--)
 	return 1;
 }
 
-bool check14(){// have fun
+bool check13(){// have fun
 	sjtu::map<int, int> Q;
 	Q[3] = 25; Q[25] = 3; Q[1314] = 520; Q[3225] = 1; Q[10000] = 6666; 
 	sjtu::map<int, int>::iterator it;
@@ -600,7 +559,7 @@ void easy_test(){
 }
 
 int main(){
-	//freopen("testans_advance.out", "w", stdout);
+	//freopen("1", "w", stdout);
 	srand(time(NULL));
 	easy_test();
 	if(!check1()) cout << "Test 1 Failed......" << endl; else cout << "Test 1 Passed!" << endl;
@@ -616,7 +575,6 @@ int main(){
 	if(!check11()) cout << "Test 11 Failed......" << endl; else cout << "Test 11 Passed!" << endl;
 	if(!check12()) cout << "Test 12 Failed......" << endl; else cout << "Test 12 Passed!" << endl;
 	if(!check13()) cout << "Test 13 Failed......" << endl; else cout << "Test 13 Passed!" << endl;
-	if(!check14()) cout << "Test 14 Failed......" << endl; else cout << "Test 14 Passed!" << endl;
 	return 0;
 }
 
