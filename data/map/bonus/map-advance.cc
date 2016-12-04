@@ -437,10 +437,6 @@ bool check11(){
 		Q.erase(it);
 	}
 	catch(...) {OK++;}
-	try{
-		Q.erase(kit);
-	}
-	catch(...) {OK++;}
 	sjtu::map<string, int> Q2(Q);
 	try{
 		it = Q2.find("cc");
@@ -458,7 +454,7 @@ bool check11(){
 		Qc["hehe"];
 	}
 	catch(...) {OK++;}
-	return OK == 6;
+	return OK == 5;
 }
 
 bool check12(){ // erase(it--)
