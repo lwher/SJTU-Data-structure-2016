@@ -162,7 +162,7 @@ bool check5(){// insert && remove
 				it = Q.find(num[i]); Q.erase(it);
 				stdit = stdQ.find(num[i]); stdQ.erase(stdit);
 			}
-			else cout << "fuck you!" << endl;
+			else cout << "Wrong!" << endl;
 		}
 		else{
 			Q[num[i]] = num[i];
@@ -389,7 +389,7 @@ bool check10(){//class writen by users
 				it = Q.find(node(num[i])); Q.erase(it);
 				stdit = stdQ.find(node(num[i])); stdQ.erase(stdit);
 			}
-			else cout << "fuck you!" << endl;
+			else cout << "Wrong!" << endl;
 		}
 		else{
 			Q[node(num[i])] = num[i];
@@ -545,7 +545,7 @@ void easy_test(){
 			if(Q.count(num[i])){
 				it = Q.find(num[i]); Q.erase(it);
 			}
-			else cout << "fuck you!" << endl;
+			else cout << "Wrong!" << endl;
 		}
 		else{
 			Q[num[i]] = num[i];
